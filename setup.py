@@ -11,6 +11,9 @@ requirements = [
     "pytest",
     "pyyaml>=5",
     "streamlit==0.82",
+    # Added by me
+    "protobuf~=3.19.0",
+    "Pygments",
     "jinja2",
     "plotly",
     "requests",

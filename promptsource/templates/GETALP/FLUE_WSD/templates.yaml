@@ -1,8 +1,5 @@
 dataset: GETALP/FLUE_WSD
-#subset: SemEval  # TODO our usual data pre-processing
 templates:
-# Include the newly created templates for our task 
-# TODO modify this one 
   14e73f39-a0d1-45c2-b9a4-4e48f9f1608e: !Template
     answer_choices: No ||| Yes
     id: 14e73f39-a0d1-45c2-b9a4-4e48f9f1608e
@@ -27,3 +24,18 @@ templates:
       original_task: true
     name: question-context-meaning-with-label
     reference: Generalized question-context format with label
+  c9a84e94-4414-4105-804c-3dfc14fe1654: !Template
+    answer_choices: 'null'
+    id: c9a84e94-4414-4105-804c-3dfc14fe1654
+    jinja: "Contexte : {{ surface_forms }}\nQuestion: Quelle glose correspond au mot\
+      \ \"{{ surface_forms[1] }}\" \xE9tant donn\xE9 le contexte de cette phrase ?\
+      \   |||\n{{ first_labels[1] }}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      original_task: true
+    name: find-gloss-with-context
+    reference: ''

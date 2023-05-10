@@ -1,0 +1,17 @@
+dataset: GETALP/FLUE_VSD
+templates:
+  da402894-0704-4fbf-8fc3-c4038041d795: !Template
+    answer_choices: null
+    id: da402894-0704-4fbf-8fc3-c4038041d795
+    jinja: "Contexte : {{ sentence_fr }}\nQuestion: Quelle glose correspond au verb\
+      \ \"{{ instance_surface_forms}}\" \xE9tant donn\xE9 le contexte de cette phrase ?\
+      \  |||\n{{ instance_fine_pos }} \n"
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      original_task: true
+    name: find-gloss-with-context-vsd
+    reference: ''

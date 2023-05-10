@@ -1,35 +1,42 @@
 dataset: GETALP/FLUE_WSD
 templates:
-  14e73f39-a0d1-45c2-b9a4-4e48f9f1608e: !Template
-    answer_choices: No ||| Yes
-    id: 14e73f39-a0d1-45c2-b9a4-4e48f9f1608e
-    jinja: 'Does the word "{{word}}" have the same meaning in these two sentences?
-      Yes, No?
+  26e32d29-b41e-4a5f-8497-07edbc0d879b: !Template
+    answer_choices: null
+    id: 26e32d29-b41e-4a5f-8497-07edbc0d879b
+    jinja: 'Contexte : {{ sentence_fr }}
 
-      {{sentence1}}
+      Question : Donne le sens WordNet du mot suivant : "{{ surface_forms[1] }}"  |||
 
-      {{sentence2}}
-
-      ||| {% if label != -1%}
-
-      {{answer_choices[label]}}
-
-      {% endif %}'
+      {{ first_labels[1] }}'
     metadata: !TemplateMetadata
-      choices_in_prompt: true
+      choices_in_prompt: false
       languages:
       - fr
       metrics:
       - Accuracy
       original_task: true
-    name: question-context-meaning-with-label
-    reference: Generalized question-context format with label
+    name: exercise-tag-wordnet
+    reference: ''
   c9a84e94-4414-4105-804c-3dfc14fe1654: !Template
-    answer_choices: 'null'
+    answer_choices: null
     id: c9a84e94-4414-4105-804c-3dfc14fe1654
-    jinja: "Contexte : {{ surface_forms }}\nQuestion: Quelle glose correspond au mot\
+    jinja: "Contexte : {{ sentence_fr }}\nQuestion: Tag la phrase donn\xE9e au-dessus\
+      \ en utilisant les annotations WordNet.  |||\n{{ first_labels}}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      original_task: true
+    name: tag-with-glosses
+    reference: ''
+  da402894-0704-4fbf-8fc3-c4038041d798: !Template
+    answer_choices: null
+    id: da402894-0704-4fbf-8fc3-c4038041d798
+    jinja: "Contexte : {{ sentence_fr }}\nQuestion: Quelle glose correspond au mot\
       \ \"{{ surface_forms[1] }}\" \xE9tant donn\xE9 le contexte de cette phrase ?\
-      \   |||\n{{ first_labels[1] }}"
+      \  |||\n{{ first_labels[1] }} \n"
     metadata: !TemplateMetadata
       choices_in_prompt: false
       languages:

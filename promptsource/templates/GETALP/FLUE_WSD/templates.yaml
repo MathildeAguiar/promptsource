@@ -13,10 +13,28 @@ templates:
       languages:
       - fr
       metrics:
-      - Accuracy
+      - ROUGE
       original_task: true
     name: exercise-tag-wordnet
     reference: ''
+  6e2ba8f7-e3b0-4bf8-82d7-3e8359ae3763: !Template
+    answer_choices: '{% for i in first_labels %} {{ i }} ||| {% endfor %}'
+    id: 6e2ba8f7-e3b0-4bf8-82d7-3e8359ae3763
+    jinja: "Question: Parmi les \xE9tiquettes Wordnet suivantes, donne celle qui correspond\
+      \ au mot \"{{ surface_forms[1] }}\" en consid\xE9rant le contexte ci-dessous.\n\
+      Contexte: {{ sentence_fr }} \nPropositions: {% for i in first_labels|unique\
+      \ %} \n{{ i }} \n {% endfor %}\n||| {{answer_choices[1]}}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      original_task: true
+    name: choose-right-tag-from-first_labels
+    reference: 'For this prompt we will display different Wordnet tags taken from
+      the first_labels column and the model has to choose the one that correspond
+      the best to the word in its context. '
   c9a84e94-4414-4105-804c-3dfc14fe1654: !Template
     answer_choices: null
     id: c9a84e94-4414-4105-804c-3dfc14fe1654
@@ -27,7 +45,7 @@ templates:
       languages:
       - fr
       metrics:
-      - Accuracy
+      - ROUGE
       original_task: true
     name: tag-with-glosses
     reference: ''
@@ -42,7 +60,7 @@ templates:
       languages:
       - fr
       metrics:
-      - Accuracy
+      - ROUGE
       original_task: true
     name: find-gloss-with-context
     reference: ''

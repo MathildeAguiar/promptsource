@@ -1,5 +1,24 @@
 dataset: GETALP/FLUE_WSD
 templates:
+  0ef10dc3-5489-4253-809f-da244b9ef43e: !Template
+    answer_choices: '{% for i in first_labels %} {{ i }} ||| {% endfor %}'
+    id: 0ef10dc3-5489-4253-809f-da244b9ef43e
+    jinja: "Question: Parmi les \xE9tiquettes Wordnet suivantes, donne celle qui correspond\
+      \ au mot \"{{ surface_forms[1] }}\" en consid\xE9rant le contexte ci-dessous.\n\
+      Contexte: {{ sentence_fr }} \nPropositions: {% for i in first_labels|unique\
+      \ %} \n{{ i }} \n {% endfor %}\nR\xE9ponse:\n||| {{answer_choices[1]}}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      original_task: true
+    name: choose-right-tag-from-first_labels-2
+    reference: "For this prompt we will display different Wordnet tags taken from\
+      \ the first_labels column and the model has to choose the one that correspond\
+      \ the best to the word in its context. Simply added the \"R\xE9ponse\" trigger\
+      \ compared to the 1st version."
   26e32d29-b41e-4a5f-8497-07edbc0d879b: !Template
     answer_choices: null
     id: 26e32d29-b41e-4a5f-8497-07edbc0d879b
@@ -16,6 +35,29 @@ templates:
       - ROUGE
       original_task: true
     name: exercise-tag-wordnet
+    reference: ''
+  311da391-01c0-4ef2-a576-1cbbf395b32f: !Template
+    answer_choices: '{% for i in surface_forms %} {{ i }} ||| {% endfor %}'
+    id: 311da391-01c0-4ef2-a576-1cbbf395b32f
+    jinja: "Contexte : {{ sentence_fr }}\nGlose : {% if first_labels[1] != '<NONE>'\
+      \ %} {{ first_labels[1] }} {% elif first_labels[2] != '<NONE>'  %} {{ first_labels[2]\
+      \ }} {% elif first_labels[3] != '<NONE>'  %} {{ first_labels[3] }} {% elif first_labels[4]\
+      \ != '<NONE>'  %} {{ first_labels[4] }} {% elif first_labels[5] != '<NONE>'\
+      \  %} {{ first_labels[5] }}   {% endif %}\nQuestion : Quel mot de la phrase\
+      \ donn\xE9e en tant que contexte correspond au sens d\xE9sign\xE9 par la glose\
+      \ donn\xE9e au-dessus ? \nR\xE9ponse:\n||| {% if first_labels[1] != '<NONE>'\
+      \ %}\n{{ answer_choices[1] }}\n{% elif first_labels[2] != '<NONE>'  %}\n{{ answer_choices[2]\
+      \ }}\n{% elif first_labels[3] != '<NONE>'  %}\n{{ answer_choices[3] }}\n{% elif\
+      \ first_labels[4] != '<NONE>'  %}\n{{ answer_choices[4] }}\n{% elif first_labels[5]\
+      \ != '<NONE>'  %}\n{{ answer_choices[5] }}\n{% endif %}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      original_task: true
+    name: find-ambiguous-word
     reference: ''
   6e2ba8f7-e3b0-4bf8-82d7-3e8359ae3763: !Template
     answer_choices: '{% for i in first_labels %} {{ i }} ||| {% endfor %}'

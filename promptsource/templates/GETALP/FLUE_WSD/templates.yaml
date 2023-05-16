@@ -37,7 +37,7 @@ templates:
     name: exercise-tag-wordnet
     reference: ''
   311da391-01c0-4ef2-a576-1cbbf395b32f: !Template
-    answer_choices: '{% for i in surface_forms %} {{ i }} ||| {% endfor %}'
+    answer_choices: '{% for i in surface_forms %} {{ i }} ||| {% endfor %} ||| ''<NONE>'''
     id: 311da391-01c0-4ef2-a576-1cbbf395b32f
     jinja: "Contexte : {{ sentence_fr }}\nGlose : {% if first_labels[1] != '<NONE>'\
       \ %} {{ first_labels[1] }} {% elif first_labels[2] != '<NONE>'  %} {{ first_labels[2]\

@@ -43,13 +43,24 @@ templates:
       \ %} {{ first_labels[1] }} {% elif first_labels[2] != '<NONE>'  %} {{ first_labels[2]\
       \ }} {% elif first_labels[3] != '<NONE>'  %} {{ first_labels[3] }} {% elif first_labels[4]\
       \ != '<NONE>'  %} {{ first_labels[4] }} {% elif first_labels[5] != '<NONE>'\
-      \  %} {{ first_labels[5] }}   {% endif %}\nQuestion : Quel mot de la phrase\
+      \  %} {{ first_labels[5] }}    {% elif first_labels[6] != '<NONE>'  %} {{ first_labels[6]\
+      \ }}  {% elif first_labels[7] != '<NONE>'  %} {{ first_labels[7] }}  {% elif\
+      \ first_labels[8] != '<NONE>'  %} {{ first_labels[8] }}  {% elif first_labels[9]\
+      \ != '<NONE>'  %} {{ first_labels[9] }}  {% elif first_labels[10] != '<NONE>'\
+      \  %} {{ first_labels[10] }}  {% elif first_labels[11] != '<NONE>'  %} {{ first_labels[11]\
+      \ }} {% else %} {{ '<NONE>' }} {% endif %}\nQuestion : Quel mot de la phrase\
       \ donn\xE9e en tant que contexte correspond au sens d\xE9sign\xE9 par la glose\
       \ donn\xE9e au-dessus ? \nR\xE9ponse:\n||| {% if first_labels[1] != '<NONE>'\
       \ %}\n{{ answer_choices[1] }}\n{% elif first_labels[2] != '<NONE>'  %}\n{{ answer_choices[2]\
       \ }}\n{% elif first_labels[3] != '<NONE>'  %}\n{{ answer_choices[3] }}\n{% elif\
       \ first_labels[4] != '<NONE>'  %}\n{{ answer_choices[4] }}\n{% elif first_labels[5]\
-      \ != '<NONE>'  %}\n{{ answer_choices[5] }}\n{% endif %}"
+      \ != '<NONE>'  %}\n{{ answer_choices[5] }}\n{% elif first_labels[6] != '<NONE>'\
+      \  %}\n{{ answer_choices[6] }}\n{% elif first_labels[7] != '<NONE>'  %}\n{{\
+      \ answer_choices[7] }}\n{% elif first_labels[8] != '<NONE>'  %}\n{{ answer_choices[8]\
+      \ }}\n{% elif first_labels[9] != '<NONE>'  %}\n{{ answer_choices[9] }}\n{% elif\
+      \ first_labels[10] != '<NONE>'  %}\n{{ answer_choices[10] }}\n{% elif first_labels[11]\
+      \ != '<NONE>'  %}\n{{ answer_choices[11] }}\n{% else %}\n{{ '<NONE>' }}\n{%\
+      \ endif %}"
     metadata: !TemplateMetadata
       choices_in_prompt: true
       languages:

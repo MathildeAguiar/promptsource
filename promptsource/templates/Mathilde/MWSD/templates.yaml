@@ -1,0 +1,87 @@
+dataset: Mathilde/MWSD
+templates:
+  24a57d58-46ed-41c0-b628-5cc5d1bd8bab: !Template
+    answer_choices: '{% for i in first_labels %} {{ i }} ||| {% endfor %}'
+    id: 24a57d58-46ed-41c0-b628-5cc5d1bd8bab
+    jinja: "Question: Parmi les \xE9tiquettes Wordnet suivantes, donner celle qui\
+      \ correspond au sens clinique du mot \"{{ surface_forms[1] }}\" en consid\xE9\
+      rant le contexte ci-dessous.\nContexte: {{ sentence_fr }} \nPropositions: {%\
+      \ for i in first_labels|unique %} \n{{ i }} \n {% endfor %}\n||| {{answer_choices[1]}}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      - COQA F1
+      original_task: true
+    name: bio-choose-right-tag-from-first_labels
+    reference: Clinical version of the prompt used for WSD/VSD
+  2d36e6ba-312d-4cb0-9eb8-118dbb0c5ac5: !Template
+    answer_choices: '{% for i in first_labels %} {{ i }} ||| {% endfor %}'
+    id: 2d36e6ba-312d-4cb0-9eb8-118dbb0c5ac5
+    jinja: "Question: Dans le contexte biom\xE9dical, quel est le sens de \"{{ surface_forms[1]\
+      \ }}\" en consid\xE9rant le contexte ci-dessous.\nContexte: {{ sentence_fr }}\
+      \ \nPropositions: {% for i in first_labels|unique %} \n{{ i }} \n {% endfor\
+      \ %}\n||| {{answer_choices[1]}}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      - COQA F1
+      original_task: true
+    name: bio-infer-definition
+    reference: ''
+  75f2a7e6-12c9-4cfe-ae36-504fbe96d235: !Template
+    answer_choices: '{% for i in first_labels %} {{ i }} ||| {% endfor %}'
+    id: 75f2a7e6-12c9-4cfe-ae36-504fbe96d235
+    jinja: "Contexte: {{ sentence_fr }} \nPropositions: {% for i in first_labels|unique\
+      \ %} \n{{ i }} \n {% endfor %}\nQuestion: Quel tag Wordnet correspond au mot\
+      \ \"{{ surface_forms[1] }}\" dans un contexte m\xE9dical ?\n||| {{answer_choices[1]}}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      - COQA F1
+      original_task: true
+    name: bio-context-first
+    reference: ''
+  83ee42b7-0968-4444-89c4-40fd20b2c334: !Template
+    answer_choices: '{% for i in surface_forms %} {{ i }} ||| {% endfor %} ||| <NONE>'
+    id: 83ee42b7-0968-4444-89c4-40fd20b2c334
+    jinja: "Contexte : {{ sentence_fr }}\nGlose : {% if first_labels[1] != '<NONE>'\
+      \ %} {{ first_labels[1] }} {% elif first_labels[2] != '<NONE>'  %} {{ first_labels[2]\
+      \ }} {% elif first_labels[3] != '<NONE>'  %} {{ first_labels[3] }} {% elif first_labels[4]\
+      \ != '<NONE>'  %} {{ first_labels[4] }} {% elif first_labels[5] != '<NONE>'\
+      \  %} {{ first_labels[5] }}    {% elif first_labels[6] != '<NONE>'  %} {{ first_labels[6]\
+      \ }}  {% elif first_labels[7] != '<NONE>'  %} {{ first_labels[7] }}  {% elif\
+      \ first_labels[8] != '<NONE>'  %} {{ first_labels[8] }}  {% elif first_labels[9]\
+      \ != '<NONE>'  %} {{ first_labels[9] }}  {% elif first_labels[10] != '<NONE>'\
+      \  %} {{ first_labels[10] }}  {% elif first_labels[11] != '<NONE>'  %} {{ first_labels[11]\
+      \ }} {% else %} {{ '<NONE>' }} {% endif %}\nQuestion : Quel mot de la phrase\
+      \ donn\xE9e en tant que contexte correspond au sens d\xE9sign\xE9 par la glose\
+      \ donn\xE9e au-dessus ? \nR\xE9ponse:\n||| {% if first_labels[1] != '<NONE>'\
+      \ %}\n{{ answer_choices[1] }}\n{% elif first_labels[2] != '<NONE>'  %}\n{{ answer_choices[2]\
+      \ }}\n{% elif first_labels[3] != '<NONE>'  %}\n{{ answer_choices[3] }}\n{% elif\
+      \ first_labels[4] != '<NONE>'  %}\n{{ answer_choices[4] }}\n{% elif first_labels[5]\
+      \ != '<NONE>'  %}\n{{ answer_choices[5] }}\n{% elif first_labels[6] != '<NONE>'\
+      \  %}\n{{ answer_choices[6] }}\n{% elif first_labels[7] != '<NONE>'  %}\n{{\
+      \ answer_choices[7] }}\n{% elif first_labels[8] != '<NONE>'  %}\n{{ answer_choices[8]\
+      \ }}\n{% elif first_labels[9] != '<NONE>'  %}\n{{ answer_choices[9] }}\n{% elif\
+      \ first_labels[10] != '<NONE>'  %}\n{{ answer_choices[10] }}\n{% elif first_labels[11]\
+      \ != '<NONE>'  %}\n{{ answer_choices[11] }}\n{% else %}\n{{ '<NONE>' }}\n{%\
+      \ endif %}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      - COQA F1
+      original_task: true
+    name: bio-find-ambiguous-word
+    reference: ''

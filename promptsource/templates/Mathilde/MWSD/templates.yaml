@@ -34,6 +34,55 @@ templates:
       original_task: true
     name: bio-infer-definition
     reference: ''
+  48aaa264-1bc9-4fa4-8afc-d56a2a21dda3: !Template
+    answer_choices: Yes ||| No
+    id: 48aaa264-1bc9-4fa4-8afc-d56a2a21dda3
+    jinja: 'Est-ce que le tag {{ first_labels[0] }} correspond au mot "{{ surface_forms[4]
+      }}" dans la phrase : {{ sentence_fr }}
+
+      ||| {{answer_choices[1]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      original_task: true
+    name: bio-yes-no-gloss-no_var
+    reference: ''
+  4cbe4063-1f3d-4d74-9d0d-dde954e3b716: !Template
+    answer_choices: '{{ surface_forms }}'
+    id: 4cbe4063-1f3d-4d74-9d0d-dde954e3b716
+    jinja: 'Est-ce que le tag {{ first_labels[4] }} correspond au mot "{{ surface_forms[4]
+      }}" , "{{ surface_forms[1] }}",   "{{ surface_forms[2] }}" ou "{{ surface_forms[0]
+      }}" dans la phrase : {{ sentence_fr }}
+
+      ||| {{surface_forms[4]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      original_task: true
+    name: bio-choose-right-word-for-tag
+    reference: ''
+  64ff46ac-406a-490f-b509-2ed131866bfb: !Template
+    answer_choices: 'Yes ||| No '
+    id: 64ff46ac-406a-490f-b509-2ed131866bfb
+    jinja: 'Est-ce que le tag {{ first_labels[4] }} correspond au mot "{{ surface_forms[4]
+      }}" dans la phrase : {{ sentence_fr }}
+
+      ||| {{answer_choices[0]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages:
+      - fr
+      metrics:
+      - Accuracy
+      original_task: true
+    name: bio-yes-no-gloss-yes_var
+    reference: Terrible :x
   75f2a7e6-12c9-4cfe-ae36-504fbe96d235: !Template
     answer_choices: '{% for i in first_labels %} {{ i }} ||| {% endfor %}'
     id: 75f2a7e6-12c9-4cfe-ae36-504fbe96d235
